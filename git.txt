@@ -20,4 +20,9 @@ g:::::gg   gg:::::g
  g::::::ggg:::::::g                                
   gg:::::::::::::g                                 
     ggg::::::ggg                                   
-       gggggg                                      
+       gggggg          
+       
+       
+#1 Via Github we can save our files at git and also pull our files from git. 
+#2 Git is a version control system, i.e. it keeps our files and the changes to it organized.
+#3 Git and Github are both powerful tools for collaborating with other data scientists. 
