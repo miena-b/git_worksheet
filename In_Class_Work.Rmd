@@ -112,3 +112,78 @@ grepl(pattern = "dog", x = survey$pets, ignore.case = TRUE)
 
 #### We can see that whenever the term "dog" appears as a value the grepl output shows "TRUE" instead of "FALSE". 
 ```
+
+#----- 8.2.23 DEBUGGING 
+
+# DEBUG 1
+```{r}
+example = c(1, 2, 3, 3, 4, 5, 7)
+
+error_example = function(numeric_vector) {
+  
+  # Sum it up!
+  vec_sum = sum(example)
+  
+  # divide by sum!
+  percents = example / vec_sum
+  
+  # Get a table!
+  vec_table = table(example)
+  
+  # Sum the possibilities!
+  sum_names = sum(as.numeric(names(vec_table)))
+  
+  # return the table!
+  return(vec_table)
+}
+
+error_example(example)
+```
+
+```{r}
+traceback()
+```
+
+```{r}
+debugonce(error_example)
+```
+
+```{r}
+# debug window opens:
+# type n = next; R will run the next code (you can check in the environment tab the output)
+# issue here: names cannot be summed because they're characters - fixed: as.numeric in front of it
+# to stop browsing: click on stop; comment browse!
+```
+
+
+# DEBUG 2
+
+```{r}
+# Make example
+example1 = c(1, 2, 3, 3, 4, 5, 7)
+example2 = c(5, 5, 5, 5, 5, 5, 5)
+
+# re-create my failed mode from Monday
+get_mode = function(...){
+  
+  # unlist all input to find mode
+  flat = unlist(list(...))
+  
+  # find the most common input
+  mode_table = table(flat)
+  
+  # get hte name of the most common element
+  our_mode = names(which.max(mode_table))
+  
+  # return output
+  return(our_mode)
+}
+
+# Bad result!
+get_mode(example1, example2)
+```
+
+```{r}
+#issue here: unlist only takes the first vector (because unlist as a function only takes one argument - fixed: put list(...) inside unlist)
+```
+
