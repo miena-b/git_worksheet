@@ -1,0 +1,147 @@
+---
+title: "git_worksheet_2_objects_in_r"
+output: html_document
+date: "2023-02-01"
+editor_options: 
+  chunk_output_type: inline
+---
+
+### Q1: Predict class of vectors
+
+#### A: 1: numeric, 2: character, 3: character, 4: numeric
+
+```{r}
+# example 1
+q1_1 <- c(TRUE, 8)
+
+# example 2
+q1_2 <- c("TRUE", FALSE)
+
+# example 3
+q1_3 <- c(F, F, F, T)
+
+# example 4
+q1_4 <- c(TRUE, TRUE, TRUE, 1)
+```
+
+```{r}
+class(q1_1)
+class(q1_2)
+class(q1_3)
+class(q1_4)
+```
+
+#### number 3 isn't a character, it's logical (I thought False and True have to be written out, but the letters are also not in quotation marks... gotta be more careful)
+
+### Q2: What will happen with the following code? 
+
+```{r}
+as.numeric(c("Will", "I", "work?"))
+```
+
+#### A: The code shouldn't work, because this isn't a factor. Therefore the vector stays with the characters. 
+
+```{r}
+as.numeric(c("Will", "I", "work?"))
+```
+
+### Q3: What happens here? 
+
+```{r}
+test_vec = c(1, 3, 3, 7)
+class(test_vec) = "character"
+```
+
+#### A: The vector entails numeric objects in the beginning, however, the second code changes the class type and made the vector have character objects now. If we run test_vec we get the following: 
+
+```{r}
+test_vec
+```
+
+### Q4: Add another attribute 
+```{r}
+# make a named vector (weather forecast in degrees F)
+named_vec = c("Mon" = 39, "Tues" = 36, "Wed" = 44, "Thur" = 36, "Fri" = 44, "Sat" = 45, "Sun" = 37)
+named_vec
+```
+
+```{r}
+# quick maths
+named_vec * 2
+```
+
+```{r}
+str(named_vec)
+```
+
+```{r}
+attr(named_vec, "month/day") = "01/30, 01/31, 02/01, 02/02, 02/03, 02/04, 02/05"  
+```
+
+```{r}
+attributes(named_vec)
+```
+### Q5: Subsetting
+
+```{r}
+# get the built in mtcars data
+cars = mtcars
+
+# subset using $
+mtcars$mpg
+```
+
+```{r}
+# subset using []
+mtcars[, "mpg"]
+```
+
+```{r}
+# make an example list to work with
+example_list = list("numbers" = c(1, 2, 5, 7, 3, 5),
+                    "letters" = c("y", "u", "n", "r", "t", "b"),
+                    "df" = mtcars)
+```
+
+```{r}
+# get element 1
+example_list[1]
+```
+
+```{r}
+# get contents of element 1
+example_list[[1]]
+```
+
+```{r}
+# using $
+example_list$numbers
+```
+
+```{r}
+# using name
+example_list[["numbers"]]
+```
+
+```{r}
+# using position
+example_list[[1]]
+```
+
+```{r}
+# subset number 7 from the number vector 
+example_list$numbers[4]
+```
+
+```{r}
+# subset letters y and t from the character vector
+example_list$letters[c(1,5)] 
+```
+
+#### ? I don't know hoe to subset both letters together... 
+
+```{r}
+# subset entire mtcars dataframe
+example_list$df
+```
+
